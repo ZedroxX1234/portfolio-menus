@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Éclat — Prestations &amp; Tarifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#fbfaf8;
+    --greige:#e9e3db;
+    --greige-deep:#d8cfc4;
+    --taupe:#9a8d7e;
+    --ink:#332f2a;
+    --rose:#c9a89b;
+    --rose-deep:#b28d7f;
+    --muted:#7d766c;
+    --line:#e4ded5;
+    --shadow:0 2px 6px rgba(51,47,42,.05),0 14px 40px rgba(51,47,42,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--white);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 40px;background:rgba(251,250,248,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .logo{font-family:'Cormorant',serif;font-weight:600;font-size:1.5rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);text-decoration:none}
+  .nav-links{display:flex;align-items:center;gap:32px}
+  .nav-links a{font-size:.82rem;letter-spacing:.08em;color:var(--muted);text-decoration:none;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{border:1px solid var(--ink);color:var(--ink)!important;padding:9px 20px;transition:all .2s}
+  .nav-cta:hover{background:var(--ink);color:var(--white)!important}
+  @media (max-width:720px){.nav-links a:not(.nav-cta):not(.back){display:none}nav{padding:14px 20px}}
+
+  /* HEADER */
+  .page-head{text-align:center;padding:80px 24px 50px;background:var(--greige)}
+  .page-head .eyebrow{font-size:.8rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose-deep);font-weight:500;margin-bottom:20px}
+  .page-head h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.8rem,7vw,4.6rem);line-height:1;margin-bottom:16px}
+  .page-head p{color:var(--muted);max-width:480px;margin:0 auto;font-size:1.02rem}
+
+  /* SEARCH + FILTERS */
+  .controls{position:sticky;top:64px;z-index:90;background:rgba(251,250,248,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .controls-inner{max-width:900px;margin:0 auto;padding:18px 40px}
+  .search{position:relative;margin-bottom:14px}
+  .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--taupe)}
+  .search input{width:100%;padding:14px 44px;border:1px solid var(--line);background:var(--white);
+    font-size:1rem;font-family:inherit;color:var(--ink)}
+  .search input:focus{outline:1px solid var(--rose-deep);border-color:var(--rose-deep)}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .chip{border:1px solid var(--line);background:var(--white);color:var(--muted);padding:8px 18px;
+    font-size:.82rem;letter-spacing:.04em;font-family:inherit;cursor:pointer;transition:all .15s}
+  .chip:hover{border-color:var(--taupe)}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--white);border-color:var(--ink)}
+
+  /* PRESTATIONS */
+  main{max-width:960px;margin:0 auto;padding:20px 40px 90px}
+  .cat{padding-top:56px;scroll-margin-top:180px}
+  .cat-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .cat-head h2{font-family:'Cormorant',serif;font-weight:600;font-size:2rem}
+  .cat-head .count{font-size:.8rem;color:var(--taupe);margin-left:auto}
+  .cat-rule{height:1px;background:var(--greige-deep);margin:14px 0 24px}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media (max-width:680px){.grid{grid-template-columns:1fr}}
+  .row{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 22px 20px;
+    display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s;position:relative}
+  .row:hover{transform:translateY(-4px);box-shadow:0 6px 12px rgba(51,47,42,.07),0 20px 44px rgba(51,47,42,.1)}
+  .row-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+  .row h3{font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;line-height:1.15;margin:0}
+  .row p{font-size:.9rem;color:var(--muted);margin:0}
+  .row-meta{display:flex;align-items:center;gap:10px;margin-top:2px}
+  .dur{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;color:var(--rose-deep);
+    letter-spacing:.03em;background:var(--greige);padding:4px 11px;border-radius:999px}
+  .price{font-family:'Cormorant',serif;font-weight:600;font-size:1.15rem;color:var(--white);white-space:nowrap;
+    background:var(--ink);padding:8px 15px;border-radius:12px;text-align:center;line-height:1.1;box-shadow:0 2px 6px rgba(51,47,42,.2)}
+  .price .from{display:block;font-size:.62rem;color:var(--rose);font-family:'Inter';font-weight:500;letter-spacing:.04em;margin-bottom:1px}
+  mark{background:var(--greige-deep);color:inherit;padding:0 2px}
+
+  .note{text-align:center;max-width:600px;margin:60px auto 0;padding:26px;background:var(--greige);border-radius:16px;font-size:.9rem;color:var(--muted)}
+
+  .empty{text-align:center;padding:70px 20px;color:var(--taupe)}
+  .empty strong{display:block;font-family:'Cormorant',serif;font-size:1.6rem;color:var(--ink);margin-bottom:8px}
+
+  footer{background:var(--ink);color:#cfc7bc;text-align:center;padding:50px 20px;font-size:.86rem}
+  footer strong{font-family:'Cormorant',serif;font-size:1.3rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);display:block;margin-bottom:10px}
+  footer a{color:var(--rose)}
+  .cta-btn{display:inline-block;margin-top:20px;background:var(--rose-deep);color:var(--white);text-decoration:none;
+    padding:14px 32px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .cta-btn:hover{background:var(--rose)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="accueil-eclat.html" class="logo">Éclat</a>
+  <div class="nav-links">
+    <a href="accueil-eclat.html" class="back">← Accueil</a>
+    <a href="tel:+3225557788" class="nav-cta">Prendre RDV</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="eyebrow">Prestations &amp; tarifs</p>
+  <h1>Nos prestations</h1>
+  <p>Des tarifs clairs et transparents. Les prix des colorations peuvent varier selon la longueur des cheveux.</p>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Rechercher une prestation…" autocomplete="off" aria-label="Rechercher">
+    </div>
+    <div class="filters" id="filters"></div>
+  </div>
+</div>
+
+<main id="list"></main>
+
+<footer>
+  <strong>Éclat</strong>
+  Avenue Louise 45, 1050 Bruxelles · <a href="tel:+3225557788">+32 (0)2 555 77 88</a>
+  <br>
+  <a class="cta-btn" href="tel:+3225557788">Prendre rendez-vous</a>
+</footer>
+
+<script>
+const DATA=[
+  {id:"coupe", title:"Coupe", items:[
+    {n:"Coupe femme", d:"Shampoing, coupe et coiffage", p:"38€", dur:"45 min"},
+    {n:"Coupe homme", d:"Shampoing, coupe et coiffage", p:"22€", dur:"30 min"},
+    {n:"Coupe enfant (-12 ans)", d:"Shampoing et coupe", p:"16€", dur:"30 min"},
+    {n:"Brushing seul", d:"Selon la longueur", p:"20€", from:true, dur:"30 min"},
+    {n:"Frange", d:"Retouche de frange", p:"8€", dur:"15 min"},
+  ]},
+  {id:"couleur", title:"Couleur", items:[
+    {n:"Coloration racines", d:"Application et rinçage", p:"40€", from:true, dur:"1h"},
+    {n:"Coloration complète", d:"Longueurs et pointes comprises", p:"50€", from:true, dur:"1h30"},
+    {n:"Balayage", d:"Effet naturel et lumineux", p:"70€", from:true, dur:"2h"},
+    {n:"Mèches", d:"Mèches partielles ou complètes", p:"62€", from:true, dur:"1h45"},
+    {n:"Patine / gloss", d:"Raviver et neutraliser la couleur", p:"28€", from:true, dur:"45 min"},
+  ]},
+  {id:"coiffure", title:"Coiffure", items:[
+    {n:"Chignon", d:"Chignon élégant pour toute occasion", p:"45€", from:true, dur:"1h"},
+    {n:"Coiffure de mariée", d:"Essai + jour J", p:"95€", from:true, dur:"sur devis"},
+    {n:"Coiffure d'événement", d:"Soirée, cérémonie", p:"40€", from:true, dur:"1h"},
+    {n:"Bouclage / ondulations", d:"Mise en forme au fer", p:"25€", dur:"45 min"},
+  ]},
+  {id:"soins", title:"Soins", items:[
+    {n:"Soin profond", d:"Masque nourrissant sur mesure", p:"16€", dur:"20 min"},
+    {n:"Rituel réparateur", d:"Soin intense pour cheveux abîmés", p:"28€", dur:"40 min"},
+    {n:"Soin brillance", d:"Éclat et douceur immédiats", p:"20€", dur:"30 min"},
+    {n:"Massage du cuir chevelu", d:"Détente et stimulation", p:"14€", dur:"20 min"},
+  ]},
+];
+
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const list=document.getElementById('list'), filtersEl=document.getElementById('filters');
+
+function render(){
+  let html='';
+  DATA.forEach(cat=>{
+    html+=`<section class="cat" id="${cat.id}" data-cat>
+      <div class="cat-head"><h2>${cat.title}</h2><span class="count" data-count></span></div>
+      <div class="cat-rule"></div>
+      <div class="grid">
+      ${cat.items.map(it=>`
+        <div class="row" data-text="${norm(it.n+' '+(it.d||''))}">
+          <div class="row-top">
+            <h3>${it.n}</h3>
+            <div class="price">${it.from?'<span class="from">dès</span>':''}${it.p}</div>
+          </div>
+          ${it.d?`<p>${it.d}</p>`:''}
+          <div class="row-meta"><span class="dur">⏱ ${it.dur}</span></div>
+        </div>`).join('')}
+      </div>
+    </section>`;
+  });
+  html+=`<div class="empty" id="empty" style="display:none"><strong>Aucune prestation trouvée</strong>Essayez un autre mot-clé.</div>`;
+  html+=`<div class="note">Un doute sur la prestation adaptée ? Appelez-nous, nous vous conseillons avec plaisir.</div>`;
+  list.innerHTML=html;
+  filtersEl.innerHTML=`<button class="chip" data-cat="all" aria-pressed="true">Tout</button>`+
+    DATA.map(c=>`<button class="chip" data-cat="${c.id}" aria-pressed="false">${c.title}</button>`).join('');
+}
+render();
+
+const q=document.getElementById('q');
+let activeCat='all';
+
+function apply(){
+  const term=norm(q.value.trim());
+  let anyVisible=false;
+  document.querySelectorAll('[data-cat]').forEach(cat=>{
+    const catOk=activeCat==='all'||cat.id===activeCat;
+    let shown=0;
+    cat.querySelectorAll('.row').forEach(row=>{
+      const textOk=!term||row.dataset.text.includes(term);
+      const ok=catOk&&textOk;
+      row.style.display=ok?'':'none';
+      const h3=row.querySelector('h3');
+      if(ok&&term){h3.innerHTML=h3.textContent.replace(new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),'<mark>$1</mark>');}
+      else{h3.innerHTML=h3.textContent;}
+      if(ok)shown++;
+    });
+    cat.style.display=(catOk&&shown)?'':'none';
+    const c=cat.querySelector('[data-count]');
+    if(c)c.textContent=shown?`${shown} prestation${shown>1?'s':''}`:'';
+    if(shown&&catOk)anyVisible=true;
+  });
+  document.getElementById('empty').style.display=anyVisible?'none':'block';
+}
+
+filtersEl.addEventListener('click',e=>{
+  const btn=e.target.closest('.chip');if(!btn)return;
+  activeCat=btn.dataset.cat;
+  filtersEl.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===btn?'true':'false'));
+  apply();
+});
+q.addEventListener('input',apply);
+</script>
+</body>
+</html>
