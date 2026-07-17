@@ -53,8 +53,11 @@
   .rule hr{border:0;height:1px;background:var(--line)}
 
   /* PROJETS */
-  .projects{max-width:1060px;margin:0 auto;padding:0 24px 80px;
+  .projects{max-width:1060px;margin:0 auto;padding:0 24px 40px;
     display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .cat-band{max-width:1060px;margin:0 auto;padding:32px 24px 4px}
+  .cat-band h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;color:var(--ink);
+    display:flex;align-items:center;gap:10px}
 
   .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
@@ -67,6 +70,7 @@
   .card-preview.faitout{background:linear-gradient(135deg,#26221d 0%,#3c3a37 60%,#6f6a62 100%)}
   .card-preview.volta{background:linear-gradient(135deg,#404d29 0%,#5c6b3d 60%,#8a9e5a 100%)}
   .card-preview.atelier{background:linear-gradient(135deg,#5b2a4e 0%,#e8674c 60%,#f0a830 100%)}
+  .card-preview.eclat{background:linear-gradient(135deg,#332f2a 0%,#9a8d7e 60%,#c9a89b 100%)}
 
   .card-body{padding:22px 22px 18px;flex:1;display:flex;flex-direction:column;gap:10px}
   .card-tag{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
@@ -133,9 +137,11 @@
 <!-- PROJETS -->
 <div class="section-label" id="projets">
   <h2>Mes réalisations</h2>
-  <p>Deux exemples de menus interactifs réalisés pour des restaurants de la région.</p>
+  <p>Des pages web modernes et interactives réalisées pour des restaurants et des salons.</p>
 </div>
 <div class="rule"><hr></div>
+
+<div class="cat-band"><h3>🍽️ Restaurants</h3></div>
 
 <div class="projects">
 
@@ -204,11 +210,39 @@
     </div>
   </div>
 
+  <!-- Éclat -->
 </div>
+
+<div class="cat-band"><h3>💇 Salons de coiffure</h3></div>
+
+<div class="projects">
+  <div class="card">
+    <div class="card-preview eclat">Éclat</div>
+    <div class="card-body">
+      <span class="card-tag">Salon de coiffure · Bruxelles</span>
+      <h3>Éclat — Salon de coiffure</h3>
+      <p>Page d'accueil sobre et élégante + page prestations interactive avec tarifs, filtres par catégorie et recherche instantanée.</p>
+      <div class="card-chips">
+        <span class="chip">Page d'accueil</span>
+        <span class="chip">Prestations</span>
+        <span class="chip">Tarifs</span>
+        <span class="chip">Filtres</span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a class="btn btn-primary" href="https://zedroxx1234.github.io/portfolio-menus/accueil-eclat.html" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Voir le projet
+      </a>
+    </div>
+  </div>
+
+</div>
+
 <section class="about" id="about">
   <div class="about-inner">
     <h2>À propos de moi</h2>
-    <p>Je m'appelle Mathéo, je suis étudiant en infographie. Je propose aux restaurants de transformer leur carte en page web interactive, moderne et facile à consulter sur mobile comme sur ordinateur.</p>
+    <p>Je m'appelle Mathéo et je propose aux restaurants et aux salons de transformer leur présence en ligne : pages web interactives, modernes et faciles à consulter sur mobile comme sur ordinateur.</p>
   </div>
 </section>
 
