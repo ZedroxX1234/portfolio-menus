@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KinéSens — Soins &amp; Tarifs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --mist:#eef4f3;
+    --mist-deep:#dde9e7;
+    --teal:#1d6b6b;
+    --teal-dark:#134f4f;
+    --mint:#7fc3ac;
+    --ink:#20302f;
+    --slate:#5a6866;
+    --line:#dde7e5;
+    --shadow:0 2px 6px rgba(20,50,50,.05),0 16px 40px rgba(20,50,50,.08);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--white);color:var(--ink);font-family:'Inter',system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+  nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+    padding:15px 40px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .logo{font-family:'Manrope',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:var(--teal);text-decoration:none}
+  .logo span{color:var(--mint)}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:.9rem;color:var(--slate);text-decoration:none;font-weight:500;transition:color .15s}
+  .nav-links a:hover{color:var(--teal)}
+  .nav-cta{background:var(--teal);color:#fff!important;padding:9px 20px;border-radius:999px;font-weight:600!important}
+  .nav-cta:hover{background:var(--teal-dark)}
+  @media (max-width:760px){.nav-links a:not(.nav-cta):not(.back){display:none}nav{padding:13px 20px}}
+
+  .page-head{text-align:center;padding:80px 24px 54px;background:linear-gradient(160deg,var(--mist),#fff)}
+  .page-head .eyebrow{font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:18px}
+  .page-head h1{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,3.8rem);line-height:1.02;letter-spacing:-.03em;margin-bottom:16px}
+  .page-head p{color:var(--slate);max-width:520px;margin:0 auto;font-size:1.02rem}
+
+  .controls{position:sticky;top:59px;z-index:90;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .controls-inner{max-width:920px;margin:0 auto;padding:18px 40px}
+  .search{position:relative;margin-bottom:14px}
+  .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--slate)}
+  .search input{width:100%;padding:14px 44px;border:1px solid var(--line);border-radius:999px;background:#fff;
+    font-size:1rem;font-family:inherit;color:var(--ink)}
+  .search input:focus{outline:2px solid var(--teal);outline-offset:1px;border-color:transparent}
+  .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--slate);padding:8px 18px;border-radius:999px;
+    font-size:.84rem;font-family:inherit;cursor:pointer;transition:all .15s;font-weight:500}
+  .chip:hover{border-color:var(--teal)}
+  .chip[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+
+  main{max-width:920px;margin:0 auto;padding:20px 40px 90px}
+  .cat{padding-top:52px;scroll-margin-top:180px}
+  .cat-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .cat-head h2{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.7rem;letter-spacing:-.01em}
+  .cat-head .count{font-size:.8rem;color:var(--slate);margin-left:auto}
+  .cat-rule{height:2px;background:linear-gradient(90deg,var(--mint) 0 40px,var(--line) 40px);margin:14px 0 24px}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media (max-width:680px){.grid{grid-template-columns:1fr}}
+  .row{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+    display:flex;flex-direction:column;gap:10px;box-shadow:var(--shadow);transition:transform .18s,box-shadow .18s}
+  .row:hover{transform:translateY(-4px);box-shadow:0 6px 12px rgba(20,50,50,.07),0 20px 44px rgba(20,50,50,.1)}
+  .row-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+  .row h3{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.15rem;line-height:1.2;margin:0}
+  .row p{font-size:.9rem;color:var(--slate);margin:0}
+  .row-meta{display:flex;align-items:center;gap:10px;margin-top:2px}
+  .dur{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;color:var(--teal);
+    background:var(--mist);padding:4px 11px;border-radius:999px;font-weight:500}
+  .price{font-family:'Manrope',sans-serif;font-weight:700;font-size:1.1rem;color:#fff;white-space:nowrap;
+    background:var(--teal);padding:8px 15px;border-radius:12px;text-align:center;line-height:1.1;box-shadow:0 2px 6px rgba(29,107,107,.25)}
+  .price .from{display:block;font-size:.62rem;color:var(--mint);font-family:'Inter';font-weight:500;letter-spacing:.04em;margin-bottom:1px}
+  mark{background:var(--mist-deep);color:inherit;padding:0 2px;border-radius:3px}
+
+  .note{text-align:center;max-width:620px;margin:60px auto 0;padding:26px;background:var(--mist);border-radius:var(--radius);font-size:.9rem;color:var(--slate)}
+  .note strong{color:var(--teal)}
+
+  .empty{text-align:center;padding:70px 20px;color:var(--slate)}
+  .empty strong{display:block;font-family:'Manrope',sans-serif;font-size:1.4rem;color:var(--ink);margin-bottom:8px}
+
+  footer{background:var(--ink);color:#9fb0ae;text-align:center;padding:50px 20px;font-size:.86rem}
+  footer strong{font-family:'Manrope',sans-serif;font-weight:700;color:#fff;font-size:1.15rem;display:block;margin-bottom:10px}
+  footer strong span{color:var(--mint)}
+  footer a{color:var(--mint);text-decoration:none}
+  .cta-btn{display:inline-block;margin-top:20px;background:var(--teal);color:#fff;text-decoration:none;
+    padding:14px 32px;border-radius:999px;font-size:.9rem;font-weight:600}
+  .cta-btn:hover{background:var(--teal-dark)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="accueil-kinesens.html" class="logo">Kiné<span>Sens</span></a>
+  <div class="nav-links">
+    <a href="accueil-kinesens.html" class="back">← Accueil</a>
+    <a href="tel:+3225551020" class="nav-cta">Prendre RDV</a>
+  </div>
+</nav>
+
+<header class="page-head">
+  <p class="eyebrow">Soins &amp; tarifs</p>
+  <h1>Nos soins</h1>
+  <p>Des tarifs clairs et transparents. La plupart de nos soins sont conventionnés et remboursés par votre mutuelle.</p>
+</header>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="q" type="search" placeholder="Rechercher un soin…" autocomplete="off" aria-label="Rechercher">
+    </div>
+    <div class="filters" id="filters"></div>
+  </div>
+</div>
+
+<main id="list"></main>
+
+<footer>
+  <strong>Kiné<span>Sens</span></strong>
+  Rue de la Santé 22, 1000 Bruxelles · <a href="tel:+3225551020">+32 (0)2 555 10 20</a>
+  <br>
+  <a class="cta-btn" href="tel:+3225551020">Prendre rendez-vous</a>
+</footer>
+
+<script>
+const DATA=[
+  {id:"generale", title:"Kiné générale", items:[
+    {n:"Séance de kinésithérapie", d:"Douleurs du dos, du cou, des articulations", p:"28€", dur:"30 min"},
+    {n:"Première consultation + bilan", d:"Évaluation complète et plan de soin", p:"40€", dur:"45 min"},
+    {n:"Thérapie manuelle", d:"Techniques manuelles ciblées", p:"32€", dur:"30 min"},
+    {n:"Kiné à domicile", d:"Séance chez vous, sur demande", p:"38€", from:true, dur:"30 min"},
+  ]},
+  {id:"sport", title:"Kiné du sport", items:[
+    {n:"Bilan sportif", d:"Analyse posturale et prévention des blessures", p:"45€", dur:"45 min"},
+    {n:"Récupération après effort", d:"Techniques de récupération musculaire", p:"35€", dur:"30 min"},
+    {n:"Préparation physique", d:"Renforcement et prévention", p:"38€", dur:"45 min"},
+    {n:"Strapping / taping", d:"Pose de bandage de maintien", p:"18€", dur:"15 min"},
+  ]},
+  {id:"reeducation", title:"Rééducation", items:[
+    {n:"Rééducation post-opératoire", d:"Suites d'opération, retour à la mobilité", p:"32€", dur:"45 min"},
+    {n:"Rééducation d'entorse", d:"Cheville, genou, poignet", p:"30€", dur:"30 min"},
+    {n:"Rééducation posturale", d:"Correction et renforcement en profondeur", p:"35€", dur:"45 min"},
+    {n:"Kiné respiratoire", d:"Sur prescription médicale", p:"30€", dur:"30 min"},
+  ]},
+  {id:"bienetre", title:"Massage & bien-être", items:[
+    {n:"Massage de détente", d:"Relâchement des tensions musculaires", p:"45€", dur:"45 min"},
+    {n:"Massage sportif", d:"Récupération et préparation musculaire", p:"50€", dur:"1h"},
+    {n:"Massage du dos", d:"Ciblé sur les zones de tension", p:"35€", dur:"30 min"},
+    {n:"Drainage lymphatique", d:"Circulation et récupération", p:"48€", from:true, dur:"45 min"},
+  ]},
+];
+
+const norm=s=>s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const list=document.getElementById('list'), filtersEl=document.getElementById('filters');
+
+function render(){
+  let html='';
+  DATA.forEach(cat=>{
+    html+=`<section class="cat" id="${cat.id}" data-cat>
+      <div class="cat-head"><h2>${cat.title}</h2><span class="count" data-count></span></div>
+      <div class="cat-rule"></div>
+      <div class="grid">
+      ${cat.items.map(it=>`
+        <div class="row" data-text="${norm(it.n+' '+(it.d||''))}">
+          <div class="row-top">
+            <h3>${it.n}</h3>
+            <div class="price">${it.from?'<span class="from">dès</span>':''}${it.p}</div>
+          </div>
+          ${it.d?`<p>${it.d}</p>`:''}
+          <div class="row-meta"><span class="dur">⏱ ${it.dur}</span></div>
+        </div>`).join('')}
+      </div>
+    </section>`;
+  });
+  html+=`<div class="empty" id="empty" style="display:none"><strong>Aucun soin trouvé</strong>Essayez un autre mot-clé.</div>`;
+  html+=`<div class="note">La plupart de nos soins sont <strong>conventionnés</strong> et donnent droit à un remboursement de votre mutuelle. N'hésitez pas à nous appeler pour toute question.</div>`;
+  list.innerHTML=html;
+  filtersEl.innerHTML=`<button class="chip" data-cat="all" aria-pressed="true">Tout</button>`+
+    DATA.map(c=>`<button class="chip" data-cat="${c.id}" aria-pressed="false">${c.title}</button>`).join('');
+}
+render();
+
+const q=document.getElementById('q');
+let activeCat='all';
+
+function apply(){
+  const term=norm(q.value.trim());
+  let anyVisible=false;
+  document.querySelectorAll('[data-cat]').forEach(cat=>{
+    const catOk=activeCat==='all'||cat.id===activeCat;
+    let shown=0;
+    cat.querySelectorAll('.row').forEach(row=>{
+      const textOk=!term||row.dataset.text.includes(term);
+      const ok=catOk&&textOk;
+      row.style.display=ok?'':'none';
+      const h3=row.querySelector('h3');
+      if(ok&&term){h3.innerHTML=h3.textContent.replace(new RegExp(`(${term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),'<mark>$1</mark>');}
+      else{h3.innerHTML=h3.textContent;}
+      if(ok)shown++;
+    });
+    cat.style.display=(catOk&&shown)?'':'none';
+    const c=cat.querySelector('[data-count]');
+    if(c)c.textContent=shown?`${shown} soin${shown>1?'s':''}`:'';
+    if(shown&&catOk)anyVisible=true;
+  });
+  document.getElementById('empty').style.display=anyVisible?'none':'block';
+}
+
+filtersEl.addEventListener('click',e=>{
+  const btn=e.target.closest('.chip');if(!btn)return;
+  activeCat=btn.dataset.cat;
+  filtersEl.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c===btn?'true':'false'));
+  apply();
+});
+q.addEventListener('input',apply);
+</script>
+</body>
+</html>
